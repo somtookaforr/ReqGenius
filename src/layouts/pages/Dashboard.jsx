@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Layout from '../../components/layout'
 import TextField from '../../components/textField'
 import profilePhoto from '../../assets/Group 66.svg'
@@ -7,14 +7,14 @@ import likeBtn from '../../assets/Facebook Like.svg'
 import dislikeBtn from '../../assets/Facebook Like (1).svg'
 
 const Dashboard = () => {
-    const [screen, setScreen] = useState(true)
+    const screen = localStorage.getItem('screen')
 
     return (
         <Layout>
             <h1 className="logo mb-20 text-center">ReqGenius.</h1>
-            {screen === false ? (
+            {screen === true ? (
                 <div className="grid gap-y-12">
-                    <div className="w-1/2 border border-gray-400 rounded-2xl p-6 justify-self-start">
+                    <div className="lg:w-1/2 border border-gray-400 rounded-2xl p-6 justify-self-start">
                         <p className="text-[#5D9ADA] text-2xl font-semibold">
                             PRECISION AND CLARITY:{' '}
                         </p>
@@ -26,7 +26,7 @@ const Dashboard = () => {
                         </p>
                     </div>
 
-                    <div className="w-1/2 border border-gray-400 rounded-2xl p-6 justify-self-end">
+                    <div className="lg:w-1/2 border border-gray-400 rounded-2xl p-6 justify-self-end">
                         <p className="text-[#5D9ADA] text-2xl font-semibold">
                             EFFORTLESS IDEATION:{' '}
                         </p>
@@ -67,7 +67,7 @@ const Dashboard = () => {
                                 blah blah blah
                             </p>
                         </div>
-                        <div className="col-span-1 shadow-md rounded-3xl grid gap-0 p-2 w-max items-center">
+                        <div className="col-span-1 h-min shadow-md rounded-3xl grid gap-4 p-2 w-max items-center">
                             <button>
                                 <img src={copyBtn} alt="" />
                             </button>
@@ -81,6 +81,7 @@ const Dashboard = () => {
                     </div>
                 </div>
             )}
+
             <TextField />
         </Layout>
     )

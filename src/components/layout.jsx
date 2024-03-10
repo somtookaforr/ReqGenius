@@ -3,7 +3,7 @@ import SideBar from './sidebar'
 
 const Layout = ({ children }) => {
     return (
-        <div className="lg:grid lg:grid-cols-12 layout">
+        <div className="lg:grid lg:grid-cols-12">
             <div className="col-span-3 overflow-y-hidden">
                 <SideBar />
             </div>

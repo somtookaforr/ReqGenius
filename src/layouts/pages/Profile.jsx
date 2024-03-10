@@ -4,7 +4,7 @@ import profilePhoto from '../../assets/Rectangle 218.png'
 
 const Profile = () => {
     let card = `rounded border p-8 shadow-sm bg-white`
-    let button = `bg-[#007FE0] h-14 text-white w-1/4 rounded-lg my-4`
+    let button = `bg-[#007FE0] h-14 text-white lg:w-1/4 rounded-lg my-4`
     let input = `w-full h-14 border border-gray-200 px-5 rounded-lg mt-2`
 
     return (

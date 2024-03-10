@@ -28,7 +28,7 @@ const SideBar = () => {
 
     const smallScreenWidth = window.innerWidth < 1024
     let container =
-        'h-14 flex rounded-xl border border-gray-400 w-full items-center px-4 gap-x-4'
+        'lg:h-14 flex rounded-xl border border-gray-400 items-center px-4 gap-x-4'
 
     return (
         <>
@@ -37,16 +37,10 @@ const SideBar = () => {
                 className={
                     isSmallScreen
                         ? 'overlay'
-                        : 'bg-[#CEE1F44D] text-gray-400 py-8 shadow-xl lg:h-full m-4 rounded-3xl'
+                        : 'bg-[#CEE1F44D] text-gray-400 py-4 shadow-xl lg:h-full m-4 rounded-3xl relative'
                 }
             >
-                <div
-                    className={isSmallScreen ? 'grid-cols-2' : 'grid my-8 px-6'}
-                >
-                    <div className={`${container} justify-center`}>
-                        <BsPlusLg size={20} />
-                        <p className="">New Requirement</p>
-                    </div>
+                <div className={isSmallScreen ? 'grid-cols-2' : ''}>
                     <IoClose
                         onClick={closeNav}
                         size={30}
@@ -58,12 +52,23 @@ const SideBar = () => {
                     />
                 </div>
                 <div className="overlay-content cursor-pointer">
-                    <div className="grid px-6 gap-y-4 mt-10">
-                        <h2 className="text-black font-semibold text-lg">
+                    <div className="grid px-6 gap-y-4">
+                        <NavLink
+                            to={'/dashboard'}
+                            onClick={smallScreenWidth ? closeNav : ''}
+                            className={`${container} justify-center`}
+                        >
+                            <BsPlusLg
+                                size={smallScreenWidth ? 28 : 22}
+                                className="self-center mr-2"
+                            />
+                            New Requirement
+                        </NavLink>
+                        <h2 className="text-black font-semibold text-lg mt-6">
                             History
                         </h2>
                         <NavLink
-                            to={''}
+                            to={'/dashboard'}
                             onClick={smallScreenWidth ? closeNav : ''}
                             className={'navItems flex'}
                         >
@@ -74,7 +79,7 @@ const SideBar = () => {
                             Functional blah blah
                         </NavLink>
                         <NavLink
-                            to={''}
+                            to={'/dashboard'}
                             onClick={smallScreenWidth ? closeNav : ''}
                             className={'navItems flex'}
                         >
@@ -87,7 +92,7 @@ const SideBar = () => {
                         <NavLink
                             to="/profile"
                             onClick={smallScreenWidth ? closeNav : ''}
-                            className={`${container} mb-8`}
+                            className={`${container} absolute bottom-0 justify-self-center w-10/12 mb-8`}
                         >
                             <BsPersonCircle
                                 size={smallScreenWidth ? 28 : 22}
