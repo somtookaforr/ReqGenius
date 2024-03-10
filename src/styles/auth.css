@@ -1,3 +1,13 @@
+body .auth {
+    background-image: url('../assets//MacBook\ Pro\ 14_\ -\ 6.svg');
+    background-position: right;
+    height: 100vh;
+}
+
+.auth form {
+    background: white;
+}
+
 .logo {
     font-family: "Modak", system-ui;
     font-weight: 400;

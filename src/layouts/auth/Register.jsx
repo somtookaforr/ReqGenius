@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom'
 
 const Login = () => {
     return (
-        <div className="grid place-items-center my-10">
-            <h1 className="logo mb-8">ReqGenius.</h1>
+        <div className="auth grid py-10 lg:mb-14 lg:content-center">
+            <h1 className="logo my-8">ReqGenius.</h1>
             <form
                 action=""
-                className="grid gap-y-8 w-[32.9375rem] p-10 rounded-2xl shadow-lg"
+                className="grid gap-y-8 w-[32.9375rem] mx-8 p-10 rounded-2xl shadow-lg justify-self-center"
             >
                 <div className="text-center">
                     <h2 className="text-3xl font-medium">Get Started</h2>

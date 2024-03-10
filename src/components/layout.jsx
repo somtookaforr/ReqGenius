@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
             </div>
 
             <main className="col-span-9 overflow-y-auto h-screen">
-                <div className="my-12 lg:px-20 px-6">
+                <div className="my-12 lg:px-10 px-6">
                     {/* Render children within the main content */}
                     {children}
                 </div>

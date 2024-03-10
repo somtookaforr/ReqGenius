@@ -1,0 +1,14 @@
+section {
+    padding: 7rem 0;
+}
+
+h1, h3 {
+    text-align: center;
+}
+
+section.one {
+    background-image: url('../assets/48zc6h7w\ 1.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+

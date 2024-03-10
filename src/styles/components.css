@@ -1,7 +1,4 @@
-/* 
-nav, footer{
-    padding: 0px 30px;
-} */  
+
   
   /* NAVBAR MIN */
   .overlay {
@@ -28,7 +25,8 @@ nav, footer{
       padding: 8px;
       text-decoration: none;
       font-size: 36px;
-      color: #818181;
+      color: white;
+      margin: 0 1rem;
       /* display: block; */
       display: flex;
       transition: 0.3s;
@@ -45,7 +43,7 @@ nav, footer{
       font-size: 60px;
     }
   
-    .navItems:hover,  a.active{
+    .navItems:hover{
       color: black;
       background-color: whitesmoke;
       padding: 10px;

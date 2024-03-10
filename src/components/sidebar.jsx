@@ -37,7 +37,7 @@ const SideBar = () => {
                 className={
                     isSmallScreen
                         ? 'overlay'
-                        : 'bg-[#CEE1F44D] text-gray-400 py-8 shadow-xl lg:h-full m-6 rounded-3xl'
+                        : 'bg-[#CEE1F44D] text-gray-400 py-8 shadow-xl lg:h-full m-4 rounded-3xl'
                 }
             >
                 <div
@@ -63,7 +63,7 @@ const SideBar = () => {
                             History
                         </h2>
                         <NavLink
-                            to="/index"
+                            to={''}
                             onClick={smallScreenWidth ? closeNav : ''}
                             className={'navItems flex'}
                         >
@@ -74,7 +74,7 @@ const SideBar = () => {
                             Functional blah blah
                         </NavLink>
                         <NavLink
-                            to="/complaints"
+                            to={''}
                             onClick={smallScreenWidth ? closeNav : ''}
                             className={'navItems flex'}
                         >
@@ -85,9 +85,9 @@ const SideBar = () => {
                             Functional blah blah
                         </NavLink>
                         <NavLink
-                            to="/complaints"
+                            to="/profile"
                             onClick={smallScreenWidth ? closeNav : ''}
-                            className={`${container} justify-between mb-8`}
+                            className={`${container} mb-8`}
                         >
                             <BsPersonCircle
                                 size={smallScreenWidth ? 28 : 22}
