@@ -98,10 +98,10 @@ const SideBar = () => {
                                 size={smallScreenWidth ? 28 : 22}
                                 className="self-center mr-2"
                             />
-                            Ayomide
+                            <p className="mx-auto">Ayomide</p>
                             <IoMenu
                                 size={smallScreenWidth ? 28 : 22}
-                                className="justify-self-end"
+                                className="ml-auto"
                             />
                         </NavLink>
                     </div>
