@@ -1,0 +1,100 @@
+import React, { createContext, useState, useContext } from 'react'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+
+// Create context
+const DataContext = createContext()
+// Create context provider
+export const DataProvider = ({ children }) => {
+    const accessToken = localStorage.getItem('accessToken')
+    const navigate = useNavigate()
+    const [profile, setProfile] = useState(null)
+    const [userInput, setUserInput] = useState(null)
+    const [specificInput, setSpecificInput] = useState(null)
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
+
+    // Function to fetch data
+    const fetchProfile = async (url) => {
+        setLoading(true)
+        try {
+            const response = await axios.get(url, {
+                headers: {
+                    'x-access-tokens': `${accessToken}`,
+                },
+            })
+            localStorage.setItem('fullName', response.data.full_name)
+            setProfile(response.data)
+        } catch (error) {
+            setError(error)
+            console.error('Error fetching data:', error)
+            if (error.response && error.response.status === 401) {
+                navigate('/')
+            }
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    const fetchUserInput = async (url) => {
+        setLoading(true)
+        try {
+            const response = await axios.get(url, {
+                headers: {
+                    'x-access-tokens': `${accessToken}`,
+                },
+            })
+            setUserInput(response.data)
+        } catch (error) {
+            setError(error)
+            console.error('Error fetching data:', error)
+            if (error.response && error.response.status === 401) {
+                navigate('/')
+            }
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    const fetchSpecificInput = async (url) => {
+        setLoading(true)
+        try {
+            const response = await axios.get(url, {
+                headers: {
+                    'x-access-tokens': `${accessToken}`,
+                },
+            })
+            setSpecificInput(response.data)
+        } catch (error) {
+            setError(error)
+            console.error('Error fetching data:', error)
+            if (error.response && error.response.status === 401) {
+                navigate('/')
+            }
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    return (
+        <DataContext.Provider
+            value={{
+                profile,
+                userInput,
+                specificInput,
+                loading,
+                error,
+                fetchProfile,
+                fetchUserInput,
+                fetchSpecificInput,
+            }}
+        >
+            {children}
+        </DataContext.Provider>
+    )
+}
+
+// Custom hook to consume context
+export const useData = () => {
+    return useContext(DataContext)
+}

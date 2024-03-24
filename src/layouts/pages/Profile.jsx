@@ -1,11 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Layout from '../../components/layout'
 import profilePhoto from '../../assets/Rectangle 218.png'
+import { userEndpoint } from '../../App'
+import { jwtDecode } from 'jwt-decode'
+import { useData } from '../../components/context'
 
 const Profile = () => {
-    let card = `rounded border p-8 shadow-sm bg-white`
+    // let card = `rounded border p-8 shadow-sm bg-white`
     let button = `bg-[#007FE0] h-14 text-white lg:w-1/4 rounded-lg my-4`
     let input = `w-full h-14 border border-gray-200 px-5 rounded-lg mt-2`
+    let accessToken = localStorage.getItem('accessToken')
+    const { profile, fetchProfile } = useData()
+    const decodedToken = jwtDecode(accessToken)
+    const userId = decodedToken.user_id
+
+    useEffect(() => {
+        fetchProfile(userEndpoint + `/${userId}`)
+    }, [])
 
     return (
         <>
@@ -24,7 +35,7 @@ const Profile = () => {
                             type="text"
                             className={input}
                             name="name"
-                            placeholder="fullname"
+                            placeholder={profile?.full_name}
                         />
                     </div>
 
@@ -37,11 +48,24 @@ const Profile = () => {
                             type="email"
                             className={input}
                             name="email"
-                            placeholder="email"
+                            placeholder={profile?.email_address}
                         />
                     </div>
 
                     <div className="">
+                        <label htmlFor="role" className="">
+                            Role
+                        </label>{' '}
+                        <br />
+                        <input
+                            type="role"
+                            className={input}
+                            name="rolee"
+                            placeholder={profile?.role}
+                        />
+                    </div>
+
+                    {/* <div className="">
                         <label htmlFor="password" className="">
                             Password
                         </label>{' '}
@@ -50,9 +74,9 @@ const Profile = () => {
                             type="password"
                             className={input}
                             name="password"
-                            placeholder="password"
+                            placeholder={profile?.password}
                         />
-                    </div>
+                    </div> */}
 
                     <button className={button}>Save</button>
                 </form>

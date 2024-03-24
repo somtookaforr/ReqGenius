@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { IoClose, IoMenu } from 'react-icons/io5'
 import { BsChat, BsPlusLg, BsPersonCircle } from 'react-icons/bs'
+import { useData } from '../components/context'
+import { userEndpoint } from '../App'
 
 const SideBar = () => {
     function openNav() {
@@ -29,6 +31,14 @@ const SideBar = () => {
     const smallScreenWidth = window.innerWidth < 1024
     let container =
         'lg:h-14 flex rounded-xl border border-gray-400 items-center px-4 gap-x-4'
+
+    const user = localStorage.getItem('fullName')
+    const [firstName, lastName] = user.split(' ')
+    const { userInput, fetchUserInput } = useData()
+
+    useEffect(() => {
+        fetchUserInput(userEndpoint + `/inputs`)
+    }, [])
 
     return (
         <>
@@ -67,28 +77,37 @@ const SideBar = () => {
                         <h2 className="text-black font-semibold text-lg mt-6">
                             History
                         </h2>
-                        <NavLink
-                            to={'/dashboard'}
-                            onClick={smallScreenWidth ? closeNav : ''}
-                            className={'navItems flex'}
-                        >
-                            <BsChat
-                                size={smallScreenWidth ? 28 : 22}
-                                className="self-center mr-2"
-                            />
-                            Functional blah blah
-                        </NavLink>
-                        <NavLink
-                            to={'/dashboard'}
-                            onClick={smallScreenWidth ? closeNav : ''}
-                            className={'navItems flex'}
-                        >
-                            <BsChat
-                                size={smallScreenWidth ? 28 : 22}
-                                className="self-center mr-2"
-                            />
-                            Functional blah blah
-                        </NavLink>
+
+                        {userInput?.length !== 0 ? (
+                            <>
+                                {userInput?.map((x, key) => (
+                                    <NavLink
+                                        to={`/dashboard/${x.input_id}`}
+                                        onClick={
+                                            smallScreenWidth ? closeNav : ''
+                                        }
+                                        className={'navItems flex'}
+                                        key={key}
+                                        id={x.input_id}
+                                    >
+                                        <BsChat
+                                            size={smallScreenWidth ? 28 : 22}
+                                            className="self-center mr-2"
+                                        />
+                                        {x?.input}
+                                    </NavLink>
+                                ))}
+                            </>
+                        ) : (
+                            <NavLink className={'flex'}>
+                                <BsChat
+                                    size={smallScreenWidth ? 28 : 22}
+                                    className="self-center mr-2"
+                                />
+                                <p>No Input</p>
+                            </NavLink>
+                        )}
+
                         <NavLink
                             to="/profile"
                             onClick={smallScreenWidth ? closeNav : ''}
@@ -98,7 +117,7 @@ const SideBar = () => {
                                 size={smallScreenWidth ? 28 : 22}
                                 className="self-center mr-2"
                             />
-                            <p className="mx-auto">Ayomide</p>
+                            <p className="mx-auto">{firstName}</p>
                             <IoMenu
                                 size={smallScreenWidth ? 28 : 22}
                                 className="ml-auto"
