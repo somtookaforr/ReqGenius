@@ -93,7 +93,6 @@ const SideBar = () => {
                         <h2 className="text-black font-semibold text-lg mt-6">
                             History
                         </h2>
-
                         {profile?.role === 'Stakeholder' ? (
                             <>
                                 {userInput?.length === undefined ? (
@@ -159,7 +158,6 @@ const SideBar = () => {
                                 )}
                             </>
                         )}
-
                         <NavLink
                             to="/profile"
                             onClick={smallScreenWidth ? closeNav : ''}

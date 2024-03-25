@@ -11,7 +11,7 @@ import { useData } from '../../components/context'
 import axios from 'axios'
 import { toast, ToastContainer } from 'react-toastify'
 import { accessToken } from '../../App'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import Spinner from '../../components/spinner'
 import { jwtDecode } from 'jwt-decode'
 
@@ -21,6 +21,9 @@ const Dashboard = () => {
     const { userInput, fetchUserInput } = useData()
     const [requirements, setRequirements] = useState('')
     const [adminRequirements, setAdminRequirements] = useState('')
+    const updateRequirementSubmit = {
+        status: 'approved',
+    }
     const updateStatusInput = {
         status: 'approved',
     }
@@ -29,6 +32,7 @@ const Dashboard = () => {
     const decodedToken = jwtDecode(accessToken)
     const userId = decodedToken.user_id
     const { id } = useParams()
+    const navigate = useNavigate()
 
     useEffect(() => {
         fetchSpecificInput(userEndpoint + `/inputs/${id}`)
@@ -74,7 +78,10 @@ const Dashboard = () => {
     }
 
     const handleRequirementChange = (e) => {
-        setAdminRequirements(e.target.value)
+        setAdminRequirements({
+            ...adminRequirements,
+            [e.target.name]: e.target.value,
+        })
     }
 
     const handleRequirementSubmit = async (e) => {
@@ -84,7 +91,7 @@ const Dashboard = () => {
         try {
             const response = await axios.put(
                 adminEndpoint + `/requirements/${id}`,
-                updateInputData,
+                adminRequirements,
                 {
                     headers: {
                         'x-access-tokens': `${accessToken}`,
@@ -146,7 +153,7 @@ const Dashboard = () => {
             toast.success(response.data.message, {
                 toastId: customId,
             })
-            window.location = '/dashboard/'
+            navigate('/dashboard', window.location.reload())
         } catch (error) {
             console.error(
                 'There was a problem with the request:',
