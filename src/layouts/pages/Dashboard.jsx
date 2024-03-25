@@ -217,7 +217,7 @@ const Dashboard = () => {
         if (userInput?.length === undefined && loading === false) {
             window.location.reload()
         }
-    }, [1])
+    }, [])
 
     return (
         <Layout>
