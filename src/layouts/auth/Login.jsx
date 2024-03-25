@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import '../../styles/auth.css'
+import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import { userEndpoint } from '../../App'
-import axios from 'axios'
 
 const Login = () => {
     let input = `w-full h-14 border border-gray-200 px-5 rounded-lg mt-2`

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import '../../styles/auth.css'
+import axios from 'axios'
 import { toast, ToastContainer } from 'react-toastify'
 import { userEndpoint } from '../../App'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
 
 const Login = () => {
     const [formData, setFormData] = useState('')

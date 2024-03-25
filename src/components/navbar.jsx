@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Link, NavLink } from 'react-router-dom'
-import { IoClose, IoMenu } from 'react-icons/io5'
 import '../styles/components.css'
+import { NavLink } from 'react-router-dom'
+import { IoClose, IoMenu } from 'react-icons/io5'
 
 const Navbar = () => {
     function openNav() {
