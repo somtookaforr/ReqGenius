@@ -31,6 +31,7 @@ const TextField = () => {
             toast.success(response.data.message, {
                 toastId: customId,
             })
+            window.location.reload()
         } catch (error) {
             console.error(
                 'There was a problem with the request:',
@@ -45,7 +46,7 @@ const TextField = () => {
     return (
         <>
             <ToastContainer autoClose={4000} />
-            <form className="bottom-0 mt-40" onSubmit={handleSubmit}>
+            <form className="bottom-0 mt-20" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-12 gap-2 lg:gap-4 mb-5">
                     <input
                         type="text"

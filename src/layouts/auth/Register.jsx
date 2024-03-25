@@ -90,7 +90,7 @@ const Login = () => {
                             onChange={handleChange}
                         >
                             <option value="">-Select-</option>
-                            <option value="Requirement Engineer">
+                            <option value="engineer">
                                 Requirement Engineer
                             </option>
                             <option value="Stakeholder">Stakeholder</option>

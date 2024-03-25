@@ -35,7 +35,6 @@ const Login = () => {
                 toastId: customId,
             })
             localStorage.setItem('accessToken', response.data.token)
-            console.log(response)
             navigate('/dashboard', { replace: true })
         } catch (error) {
             toast.dismiss()

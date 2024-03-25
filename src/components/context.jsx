@@ -11,6 +11,7 @@ export const DataProvider = ({ children }) => {
     const [profile, setProfile] = useState(null)
     const [userInput, setUserInput] = useState(null)
     const [specificInput, setSpecificInput] = useState(null)
+    const [userRequirements, setUserRequirements] = useState(null)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
 
@@ -45,6 +46,8 @@ export const DataProvider = ({ children }) => {
                 },
             })
             setUserInput(response.data)
+            // const lastElement = response.data[response.data.length - 1]
+            // localStorage.setItem('inputId', lastElement.input_id)
         } catch (error) {
             setError(error)
             console.error('Error fetching data:', error)
@@ -76,17 +79,39 @@ export const DataProvider = ({ children }) => {
         }
     }
 
+    const fetchUserRequirements = async (url) => {
+        setLoading(true)
+        try {
+            const response = await axios.get(url, {
+                headers: {
+                    'x-access-tokens': `${accessToken}`,
+                },
+            })
+            setUserRequirements(response.data)
+        } catch (error) {
+            setError(error)
+            console.error('Error fetching data:', error)
+            if (error.response && error.response.status === 401) {
+                navigate('/')
+            }
+        } finally {
+            setLoading(false)
+        }
+    }
+
     return (
         <DataContext.Provider
             value={{
                 profile,
                 userInput,
                 specificInput,
+                userRequirements,
                 loading,
                 error,
                 fetchProfile,
                 fetchUserInput,
                 fetchSpecificInput,
+                fetchUserRequirements,
             }}
         >
             {children}

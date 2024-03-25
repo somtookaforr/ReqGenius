@@ -3,7 +3,9 @@ import { NavLink } from 'react-router-dom'
 import { IoClose, IoMenu } from 'react-icons/io5'
 import { BsChat, BsPlusLg, BsPersonCircle } from 'react-icons/bs'
 import { useData } from '../components/context'
-import { userEndpoint } from '../App'
+import { adminEndpoint, userEndpoint } from '../App'
+import { jwtDecode } from 'jwt-decode'
+import { accessToken } from '../App'
 
 const SideBar = () => {
     function openNav() {
@@ -35,10 +37,24 @@ const SideBar = () => {
     const user = localStorage.getItem('fullName')
     const [firstName, lastName] = user.split(' ')
     const { userInput, fetchUserInput } = useData()
+    const { userRequirements, fetchUserRequirements } = useData()
+    const { profile, fetchProfile } = useData()
+    const decodedToken = jwtDecode(accessToken)
+    const userId = decodedToken.user_id
 
     useEffect(() => {
         fetchUserInput(userEndpoint + `/inputs`)
     }, [])
+
+    useEffect(() => {
+        fetchUserRequirements(adminEndpoint + `/requirements`)
+    }, [])
+
+    useEffect(() => {
+        fetchProfile(userEndpoint + `/${userId}`)
+    }, [])
+
+    let counter = 1
 
     return (
         <>
@@ -78,34 +94,70 @@ const SideBar = () => {
                             History
                         </h2>
 
-                        {userInput?.length !== 0 ? (
+                        {profile?.role === 'Stakeholder' ? (
                             <>
-                                {userInput?.map((x, key) => (
-                                    <NavLink
-                                        to={`/dashboard/${x.input_id}`}
-                                        onClick={
-                                            smallScreenWidth ? closeNav : ''
-                                        }
-                                        className={'navItems flex'}
-                                        key={key}
-                                        id={x.input_id}
-                                    >
+                                {userInput?.length === undefined ? (
+                                    <NavLink className={'flex'}>
                                         <BsChat
                                             size={smallScreenWidth ? 28 : 22}
                                             className="self-center mr-2"
                                         />
-                                        {x?.input}
+                                        <p>No Input</p>
                                     </NavLink>
-                                ))}
+                                ) : (
+                                    userInput?.map((x, key) => (
+                                        <NavLink
+                                            to={`/dashboard/${x.input_id}`}
+                                            onClick={
+                                                smallScreenWidth ? closeNav : ''
+                                            }
+                                            className={'navItems flex'}
+                                            key={key}
+                                            id={x.input_id}
+                                        >
+                                            <BsChat
+                                                size={
+                                                    smallScreenWidth ? 28 : 22
+                                                }
+                                                className="self-center mr-2"
+                                            />
+                                            {x?.input}
+                                        </NavLink>
+                                    ))
+                                )}
                             </>
                         ) : (
-                            <NavLink className={'flex'}>
-                                <BsChat
-                                    size={smallScreenWidth ? 28 : 22}
-                                    className="self-center mr-2"
-                                />
-                                <p>No Input</p>
-                            </NavLink>
+                            <>
+                                {userRequirements?.length === undefined ? (
+                                    <NavLink className={'flex'}>
+                                        <BsChat
+                                            size={smallScreenWidth ? 28 : 22}
+                                            className="self-center mr-2"
+                                        />
+                                        <p>No Input</p>
+                                    </NavLink>
+                                ) : (
+                                    userRequirements?.map((x, key) => (
+                                        <NavLink
+                                            to={`/dashboard/${x.requirement_id}`}
+                                            onClick={
+                                                smallScreenWidth ? closeNav : ''
+                                            }
+                                            className={'navItems flex'}
+                                            key={key}
+                                            id={x.requirement_id}
+                                        >
+                                            <BsChat
+                                                size={
+                                                    smallScreenWidth ? 28 : 22
+                                                }
+                                                className="self-center mr-2"
+                                            />
+                                            {x?.input} {counter++}
+                                        </NavLink>
+                                    ))
+                                )}
+                            </>
                         )}
 
                         <NavLink
