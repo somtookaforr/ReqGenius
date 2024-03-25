@@ -21,9 +21,6 @@ const Dashboard = () => {
     const { userInput, fetchUserInput } = useData()
     const [requirements, setRequirements] = useState('')
     const [adminRequirements, setAdminRequirements] = useState('')
-    const updateRequirementSubmit = {
-        status: 'approved',
-    }
     const updateStatusInput = {
         status: 'approved',
     }
@@ -78,10 +75,7 @@ const Dashboard = () => {
     }
 
     const handleRequirementChange = (e) => {
-        setAdminRequirements({
-            ...adminRequirements,
-            [e.target.name]: e.target.value,
-        })
+        setAdminRequirements(e.target.value)
     }
 
     const handleRequirementSubmit = async (e) => {
@@ -91,7 +85,7 @@ const Dashboard = () => {
         try {
             const response = await axios.put(
                 adminEndpoint + `/requirements/${id}`,
-                adminRequirements,
+                { requirement: adminRequirements },
                 {
                     headers: {
                         'x-access-tokens': `${accessToken}`,
