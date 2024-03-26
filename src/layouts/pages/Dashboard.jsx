@@ -163,15 +163,11 @@ const Dashboard = () => {
         setLoading(true)
 
         axios
-            .post(
-                userEndpoint + `/inputs/${id}/requirements`,
-                updateInputData,
-                {
-                    headers: {
-                        'x-access-tokens': `${accessToken}`,
-                    },
-                }
-            )
+            .post(userEndpoint + `/requirements`, updateInputData, {
+                headers: {
+                    'x-access-tokens': `${accessToken}`,
+                },
+            })
             .then((response) => {
                 setRequirements(response.data)
             })
@@ -288,18 +284,24 @@ const Dashboard = () => {
                                         <div className="bg-[#CEE1F44D] rounded-2xl p-6 col-span-10">
                                             <p className="">
                                                 {requirements
-                                                    ?.split('\n')
-                                                    .map((part, index) => (
-                                                        <span
-                                                            key={index}
-                                                            style={{
-                                                                display:
-                                                                    'block',
-                                                            }}
-                                                        >
-                                                            {part}
-                                                        </span>
-                                                    ))}
+                                                    ? requirements
+                                                          ?.split('\n')
+                                                          .map(
+                                                              (part, index) => (
+                                                                  <span
+                                                                      key={
+                                                                          index
+                                                                      }
+                                                                      style={{
+                                                                          display:
+                                                                              'block',
+                                                                      }}
+                                                                  >
+                                                                      {part}
+                                                                  </span>
+                                                              )
+                                                          )
+                                                    : 'Requirement pending approval'}
                                             </p>
                                         </div>
                                         <div className="col-span-1 h-min shadow-md rounded-3xl grid gap-4 p-2 w-max items-center">

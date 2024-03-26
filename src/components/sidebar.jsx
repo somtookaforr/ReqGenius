@@ -120,7 +120,8 @@ const SideBar = () => {
                                                 }
                                                 className="self-center mr-2"
                                             />
-                                            {x?.input}
+                                            {x?.input.slice(0, 25)}
+                                            {'...'}
                                         </NavLink>
                                     ))
                                 )}

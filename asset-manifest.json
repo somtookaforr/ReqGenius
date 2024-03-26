@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/ReqGenius/static/css/main.5900873f.css",
+    "main.js": "/ReqGenius/static/js/main.b5e32e1b.js",
+    "static/js/453.df484bae.chunk.js": "/ReqGenius/static/js/453.df484bae.chunk.js",
+    "static/media/MacBook Pro 14_ - 6.svg": "/ReqGenius/static/media/MacBook Pro 14_ - 6.65f5bdbad278ebb54b5a.svg",
+    "static/media/48zc6h7w 1.svg": "/ReqGenius/static/media/48zc6h7w 1.dd0d156d44910a1fb9be.svg",
+    "static/media/Rectangle 218.png": "/ReqGenius/static/media/Rectangle 218.5599a8df9d4a10b93979.png",
+    "static/media/Facebook Like (1).svg": "/ReqGenius/static/media/Facebook Like (1).b03a3a087d8d7e73b02fe1c4de1d43f8.svg",
+    "static/media/Facebook Like.svg": "/ReqGenius/static/media/Facebook Like.cbeb288b2accea18575f19e09d57333b.svg",
+    "static/media/Copy.svg": "/ReqGenius/static/media/Copy.17759583d6f043e2d6e84362bf1829eb.svg",
+    "static/media/Group 66.svg": "/ReqGenius/static/media/Group 66.5662270ee8ff758b0b34843eded4fe02.svg",
+    "index.html": "/ReqGenius/index.html",
+    "main.5900873f.css.map": "/ReqGenius/static/css/main.5900873f.css.map",
+    "main.b5e32e1b.js.map": "/ReqGenius/static/js/main.b5e32e1b.js.map",
+    "453.df484bae.chunk.js.map": "/ReqGenius/static/js/453.df484bae.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5900873f.css",
+    "static/js/main.b5e32e1b.js"
+  ]
+}
