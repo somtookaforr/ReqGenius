@@ -1,8 +1,12 @@
-body .auth {
+body .background {
     background-image: url('../assets//MacBook\ Pro\ 14_\ -\ 6.svg');
     background-position: right;
     height: 100vh;
 }
+
+/* body .auth {
+    height: 100%;
+} */
 
 .auth form {
     background: white;

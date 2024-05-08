@@ -29,7 +29,7 @@ const Navbar = () => {
     return (
         <>
             <nav id="myNav" className={isSmallScreen ? 'overlay' : 'lg:flex'}>
-                <div className="grid grid-cols-2 -mt-2 py-6 px-6">
+                <div className="grid grid-cols-2 -mt-2 py-6 pr-6 pl-0 lg:pr-0 lg:pl-6">
                     <NavLink to="/">
                         <h1 className="logo">ReqGenuis.</h1>
                     </NavLink>
