@@ -45,7 +45,7 @@ const Login = () => {
                     <h1 className="logo my-8">ReqGenius.</h1>
                     <form
                         action=""
-                        className="grid gap-y-8 w-11/12 md:w-9/12 lg:w-[32.9375rem] mx-8 p-10 rounded-2xl shadow-lg justify-self-center"
+                        className="grid gap-y-8 w-11/12 md:w-9/12 lg:w-[32.9375rem] lg:mx-8 p-10 rounded-2xl shadow-lg justify-self-center"
                         onSubmit={handleSubmit}
                     >
                         <div className="text-center">
