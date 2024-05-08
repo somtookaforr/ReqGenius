@@ -35,7 +35,7 @@ const SideBar = () => {
         'lg:h-14 flex rounded-xl border border-gray-400 items-center px-4 gap-x-4'
 
     const user = localStorage.getItem('fullName')
-    const [firstName, lastName] = user?.split(' ')
+    const [firstName] = user?.split(' ')
     const { userInput, fetchUserInput } = useData()
     const { userRequirements, fetchUserRequirements } = useData()
     const { profile, fetchProfile } = useData()

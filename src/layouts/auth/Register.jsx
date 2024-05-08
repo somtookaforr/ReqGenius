@@ -20,7 +20,7 @@ const Login = () => {
         const customId = 99999
         try {
             toast.loading('Loading...', { autoClose: false })
-            const response = await axios.post(
+            await axios.post(
                 userEndpoint + '/signup',
                 formData
             )
